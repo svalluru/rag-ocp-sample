@@ -101,27 +101,6 @@ FT._LIST
 
 =================
 
-Indiv - sell far dated NFLX Puts
-
-Roth IRA - 
-
-HSA
-
-BROKERAGELINK - tesla options
-
-BrokerageLink Roth - Buy Tesla stocks at 130
-
-Rollover IRA - 17k into etfs
-
-
-
-$SPLG $QQQM fsyd
-
-SMH
-soxx
-xsd
-
-
 oc new-project redis
 
 oc apply -f scc.yaml
