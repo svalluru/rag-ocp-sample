@@ -1,0 +1,42 @@
+apiVersion: app.redislabs.com/v1
+kind: RedisEnterpriseCluster
+metadata:
+  name: rec
+spec:
+  serviceAccountName: rec
+  redisEnterpriseNodeResources:
+    limits:
+      cpu: '4'
+      ephemeral-storage: 10Gi
+      memory: 6Gi
+    requests:
+      cpu: '4'
+      ephemeral-storage: 1Gi
+      memory: 6Gi
+  bootstrapperImageSpec:
+    repository: registry.connect.redhat.com/redislabs/redis-enterprise-operator
+  clusterCredentialSecretName: rec
+  nodes: 1
+  persistentSpec:
+    enabled: true
+    storageClassName: gp3-csi
+    volumeSize: 20Gi
+  createServiceAccount: true
+  username: admin@redhat.com
+  clusterCredentialSecretRole: ''
+  podStartingPolicy:
+    enabled: false
+    startingThresholdSeconds: 540
+  redisEnterpriseServicesRiggerImageSpec:
+    repository: registry.connect.redhat.com/redislabs/services-manager
+  redisEnterpriseImageSpec:
+    imagePullPolicy: IfNotPresent
+    repository: registry.connect.redhat.com/redislabs/redis-enterprise
+  uiServiceType: ClusterIP
+  clusterCredentialSecretType: kubernetes
+  servicesRiggerSpec:
+    databaseServiceType: 'cluster_ip,headless'
+    serviceNaming: bdb_name
+  services:
+    apiService:
+      type: ClusterIP
